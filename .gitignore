@@ -1,0 +1,32 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python / Django
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.sqlite3
+staticfiles/
+media/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# JavaScript
+node_modules/
+dist/
+coverage/
+.vite/
+
+# Editors and operating systems
+.idea/
+.vscode/
+!.vscode/extensions.json
+Thumbs.db
+.DS_Store
+
+# Build artifacts
+*.log

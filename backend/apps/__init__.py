@@ -1,0 +1,1 @@
+"""HireFlow domain applications."""

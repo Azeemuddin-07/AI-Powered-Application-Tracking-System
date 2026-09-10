@@ -1,0 +1,5 @@
+export type Role = 'candidate' | 'recruiter' | 'admin'
+export interface User { id: number; email: string; name: string; role: Role }
+export interface Job { id: number; title: string; company: number; company_name: string; location: string; workplace_type: string; employment_type: string; experience_level: string; salary_min?: string; salary_max?: string; salary_currency: string; status: string; description?: string; responsibilities?: string; requirements?: string; job_skills?: {skill:{name:string}, is_required:boolean}[]; created_at: string; published_at?: string; applications_count?: number }
+export interface Application { id:number; job:number; job_title:string; company_name:string; candidate?:number; candidate_name?:string; candidate_email?:string; resume?:number; cover_letter:string; status:string; created_at:string; status_history:{id:number; from_status:string; to_status:string; created_at:string}[] }
+export interface Page<T> { count:number; next:string|null; previous:string|null; results:T[] }

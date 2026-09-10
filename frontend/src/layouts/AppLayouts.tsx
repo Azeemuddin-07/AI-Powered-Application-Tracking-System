@@ -1,0 +1,9 @@
+import { BriefcaseBusiness, Building2, FileText, Heart, LayoutDashboard, LogOut, Search, Settings, UserRound } from 'lucide-react'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import type { ReactNode } from 'react'
+import type { Role, User } from '../types'
+
+export function PublicLayout({ children }: {children:ReactNode}) { return <><header className="navbar"><Link className="brand" to="/"><BriefcaseBusiness/> HireFlow</Link><nav><Link to="/jobs">Find jobs</Link><Link to="/login">Log in</Link><Link className="nav-cta" to="/register">Get started</Link></nav></header>{children}<footer><span>© 2026 HireFlow</span><span>Hiring made human.</span></footer></> }
+const candidateLinks = [['Dashboard','/candidate',LayoutDashboard],['Profile','/candidate/profile',UserRound],['Resume','/candidate/resume',FileText],['Find jobs','/jobs',Search],['Saved jobs','/candidate/saved-jobs',Heart],['Applications','/candidate/applications',BriefcaseBusiness],['Settings','/candidate/settings',Settings]] as const
+const recruiterLinks = [['Dashboard','/recruiter',LayoutDashboard],['My jobs','/recruiter/jobs',BriefcaseBusiness],['Create job','/recruiter/jobs/new',FileText],['Applicants','/recruiter/applicants',UserRound],['Company','/recruiter/company',Building2],['Settings','/recruiter/settings',Settings]] as const
+export function DashboardLayout({ user, onLogout }: {user:User; onLogout:()=>void}) { const links = user.role === 'candidate' ? candidateLinks : recruiterLinks; return <div className="dashboard"><aside><Link className="brand" to="/"><BriefcaseBusiness/> HireFlow</Link><p className="user-name">{user.name}<small>{user.role}</small></p><nav>{links.map(([label,path,Icon])=><NavLink end={path==='/candidate'||path==='/recruiter'} key={path} to={path}><Icon/>{label}</NavLink>)}</nav><button className="logout" onClick={onLogout}><LogOut/>Logout</button></aside><main className="workspace"><Outlet/></main></div> }
