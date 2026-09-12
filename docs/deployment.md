@@ -20,7 +20,8 @@ DATABASE_URL=<Render PostgreSQL internal database URL>
 MAX_RESUME_UPLOAD_BYTES=10485760
 ```
 
-The Docker image runs database migrations before Gunicorn starts.  After its
+The Docker image bootstraps Django's built-in and custom-user tables before
+syncing the remaining application schema, then starts Gunicorn. After its
 first successful deploy, copy the public service URL, for example
 `https://hireflow-api.onrender.com`.
 
